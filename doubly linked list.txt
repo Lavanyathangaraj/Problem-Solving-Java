@@ -1,3 +1,7 @@
+/*
+Insertion, deletion and removing duplicates in doubly linked list.
+*/
+
 public class Linklist{
     private Node head;
     public Linklist(){
