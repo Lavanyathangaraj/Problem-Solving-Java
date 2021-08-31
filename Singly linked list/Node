@@ -1,0 +1,20 @@
+public class Node  {
+    private int data;
+    private Node ref;
+   
+    public int getData() {
+        return data;
+    }
+   
+    public Node getRef() {
+        return ref;
+    }
+   
+    public Node (int a) {
+        data = a;
+    }
+   
+    public void setRef(Node b) {
+        ref=b;
+    }
+}
