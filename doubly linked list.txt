@@ -1,0 +1,154 @@
+public class Linklist{
+    private Node head;
+    public Linklist(){
+        head=new Node(0);
+    }
+    public void insert(int a){
+        Node b=new Node(a);
+        if(head.getNext()==null){
+            head.setNext(b);
+            b.setPrev(head);
+        }else{
+            Node itr=head;
+            while(itr.getNext()!=null){
+                itr=itr.getNext();
+            }
+            itr.setNext(b);
+            b.setPrev(itr);
+        }
+    }
+    public void insertAtIndex(int a,int index){
+        Node b=new Node(a);
+        if(index==0){
+            b.setNext(head.getNext());
+            b.setPrev(head);
+            head.setNext(b);
+        }else{
+            int ind=0;
+            Node itr=head;
+            while(itr.getNext()!=null){
+                itr=itr.getNext();
+                ind++;
+                if(ind==index){
+                    b.setNext(itr.getNext());
+                    itr.setNext(b);
+                    b.setPrev(itr);
+                    break;
+                }
+            }
+            
+        }
+    }
+    public void deleteAtIndex(int index){
+        Node itr=head;
+        int ind=-1;
+        while(itr.getNext()!=null){
+            ind++;
+            if(ind==index){
+                itr.setNext(itr.getNext().getNext());
+                if(itr.getNext()!=null){
+                    itr.getNext().setPrev(itr);
+                }
+                break;
+            }
+            itr=itr.getNext();
+        }
+    }
+    public void removeDuplicates(){
+        Node itr1=head;
+        while(itr1.getNext()!=null){
+            itr1=itr1.getNext();
+            Node itr2=itr1;
+            while(itr2.getNext()!=null){
+                itr2=itr2.getNext();
+                if(itr1.getData()==itr2.getData()){
+                    itr2.getPrev().setNext(itr2.getNext());
+                    if(itr2.getNext()!=null){
+                        itr2.getNext().setPrev(itr2.getPrev());
+                    }
+                    //System.out.println("itr2--"+itr2.getData());
+                    itr2=itr2.getPrev();
+                }
+            }
+        }
+    }
+    public void removeSortDuplicates(){
+        Node itr1=head;
+        while(itr1.getNext()!=null){
+            Node itr2=itr1.getNext();
+            while(itr2.getNext()!=null){
+                if(itr1.getNext().getData()==itr2.getNext().getData()){
+                    if(itr2.getNext().getNext()==null){
+                        itr1.getNext().setNext(null);
+                    }
+                    itr2=itr2.getNext();
+                }else{
+                    itr1.getNext().setNext(itr2.getNext());
+                    itr2.getNext().setPrev(itr1.getNext());
+                    break;
+                }
+            }
+            itr1=itr1.getNext();
+        }
+    }
+    public void display(){
+        Node itr=head;
+        while(itr.getNext()!=null){
+            itr=itr.getNext();
+            System.out.print(itr.getData()+" ");
+        }
+        System.out.println();
+    }
+}
+
+
+
+
+public class Node{
+    private int data;
+    private Node prev;
+    private Node next;
+    public Node(int a){
+        data=a;
+    }
+    public int getData(){
+        return data;
+    }
+    public Node getPrev(){
+        return prev;
+    }
+    public Node getNext(){
+        return next;
+    }
+    public void setPrev(Node a){
+        prev=a;
+    }
+    public void setNext(Node a){
+        next=a;
+    }
+}
+
+
+
+
+
+
+
+
+public class Main
+{
+	public static void main(String[] args) {
+		Linklist obj=new Linklist();
+		obj.insert(1);
+		obj.insert(2);
+		obj.insert(1);
+		obj.insert(1);
+		obj.insert(2);
+		obj.insert(3);
+		obj.insert(2);
+		//obj.insertAtIndex(4,0);
+		//obj.deleteAtIndex(0);
+		obj.removeDuplicates();
+		obj.display();
+	}
+}
