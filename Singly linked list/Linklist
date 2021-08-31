@@ -1,0 +1,93 @@
+public class Linklist {
+    Node head;
+   
+    public Linklist () {
+        head=new Node(0);
+    }
+   
+    public void insert(Node a) {
+        if (head.getRef()==null) {
+            Node itr = head;
+            head.setRef(a);
+            a.setRef(null);
+        } else {
+            Node itr = head;
+            while (itr.getRef()!=null) {
+                itr = itr.getRef();
+            }
+            itr.setRef(a);
+            a.setRef(null);
+        }
+    }
+   
+    public void insertAtStart(Node a) {
+        a.setRef(head.getRef());
+        head.setRef(a);
+    }
+   
+   public void insertAtIndex(Node a, int ind) {
+       Node itr = head;
+       int i=0;
+       while(itr.getRef()!=null) {
+           i++;
+           itr = itr.getRef();
+           if (i==ind) {
+               a.setRef(itr.getRef());
+               itr.setRef(a);
+               break;
+           }
+       }
+   }
+   
+   public void deleteAt(int ind) {
+       Node itr = head;
+       int i=0;
+       if(ind==0) {
+           head.setRef(head.getRef().getRef());
+       } else {
+           while(itr.getRef()!=null) {
+               i++;
+               itr = itr.getRef();
+               if (i==ind) {
+                   itr.setRef(itr.getRef().getRef());
+
+
+               }
+            }
+       }
+   }
+     public void removeDuplicates() {
+        Node itr = head;
+        Node itr2 = head.getRef();
+        while (itr.getRef()!=null) {
+            itr2 = itr.getRef();
+            while (itr2.getRef()!=null) {
+                if (itr.getRef().getData()==itr2.getRef().getData()) {
+                    itr2.setRef(itr2.getRef().getRef());
+                } else {
+                itr2=itr2.getRef();
+                }
+            }
+            itr=itr.getRef();
+        }
+    }
+   
+    public void removeSortedDuplicates() {
+        Node itr = head.getRef();
+        while(itr.getRef()!=null) {
+            if (itr.getData()==itr.getRef().getData()) {
+                itr.setRef(itr.getRef().getRef());
+            } else {
+                itr=itr.getRef();
+            }
+        }
+    }
+   
+    public void display() {
+        Node itr = head;
+        while (itr.getRef()!=null) {
+            itr = itr.getRef();
+            System.out.println(itr.getData());
+        }
+    }
+}
