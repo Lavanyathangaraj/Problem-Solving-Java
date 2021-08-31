@@ -1,0 +1,46 @@
+/*
+Write a program to check whether two strings are anagram or not.
+Two strings are called anagrams if they contain same set of characters but in different order.
+
+"keep - peek", "Mother In Law - Hitler Woman".
+*/
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		String str1=sc.nextLine();
+		String str2=sc.nextLine();
+		if(sort(str1).equals(sort(str2))==true){
+		    System.out.println("true");
+		}
+		else{
+		    System.out.println("false");
+		}
+	}
+	public static String sort(String str){
+	    str=str.toLowerCase();
+	    char arr[]=str.toCharArray();
+	    char temp=' ';
+	    for(int i=0;i<arr.length;i++){
+	        int a=arr[i];
+	        if(a<97 || a>122){
+	            arr[i]=' ';
+	        }
+	    }
+	    for(int i=0;i<arr.length;i++){
+	        for(int j=i+1;j<arr.length;j++){
+	            if(arr[j]<arr[i]){
+	                temp=arr[i];
+	                arr[i]=arr[j];
+	                arr[j]=temp;
+	            }
+	        }
+	    }
+	    String sortedarr=new String(arr);
+	    sortedarr=sortedarr.replace(" ","");
+	    System.out.println(sortedarr);
+	    return sortedarr;
+	}
+}
