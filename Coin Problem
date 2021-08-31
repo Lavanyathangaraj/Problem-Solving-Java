@@ -1,0 +1,59 @@
+/*
+Assume that we are given a set of coins having the values {1, 3, 6}. To make a sum of 7 using these coins, all possible solutions are: {1,1,1,1,1,1,1}, 
+{1,3,3}, and {1,6}. So the minimum number of coins required are 2, i.e. {1,6}. We reached our answer intuitively, but this wouldn’t work if there were
+too many denominations and a large sum was to be made.
+*/
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		 Scanner sc=new Scanner(System.in);
+		 int arr[]={1,2,30,50};
+		 int value=42;
+		 int min=1000;
+		 for(int i=arr.length-1;i>=0;i--){
+		     check(i,arr,value);
+		 }
+	}
+	public static void check(int n,int[] arr,int value){
+	    int count=0;
+	    int a[]=new int[0];
+	    int temp=value;
+	    for(int i=n;i>=0;i--){
+	        int c=containsOrNot(temp,arr[i]);
+	        if(c!=0){
+	            a=append(arr[i],a);
+	            count=count+c;
+	            temp=temp-c*arr[i];
+	            if(temp==0){
+	                System.out.println("yess");
+	                for(int x:a){
+	                    System.out.println("Coin:"+x);
+	                }
+	                System.out.println("count-------"+count);
+	            }
+	        }
+	    }
+	}
+	public static int containsOrNot(int a,int b){
+	    for(int i=1;i<=a;i++){
+	        int c=i*b;
+	        if(c==a){
+	            return i;
+	        }
+	        else if(c>a){
+	            return i-1;
+	        }
+	    }
+	    return 0;
+	}
+	public static int[] append(int x,int a[]){
+	    int a1[]=new int[a.length+1];
+	    for(int i=0;i<a.length;i++){
+	        a1[i]=a[i];
+	    }
+	    a1[a.length]=x;
+	    return a1;
+	}
+}
