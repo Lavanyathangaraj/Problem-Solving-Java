@@ -1,0 +1,13 @@
+import java.util.*;
+public class Main {
+    public static void main (String[] args) {
+        Linklist obj = new Linklist();
+        //Node n = null;
+        Scanner sc = new Scanner(System.in);
+        for (int i=0;i<3;i++) {
+            //int x = sc.nextInt();
+            obj.insert(new Node(sc.nextInt()));
+        }
+        obj.display();
+    }
+}
