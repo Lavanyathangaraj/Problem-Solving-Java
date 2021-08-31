@@ -1,0 +1,17 @@
+public class Main
+{
+	public static void main(String[] args) {
+		Linklist obj=new Linklist();
+		obj.insert(1);
+		obj.insert(2);
+		obj.insert(1);
+		obj.insert(1);
+		obj.insert(2);
+		obj.insert(3);
+		obj.insert(2);
+		//obj.insertAtIndex(4,0);
+		//obj.deleteAtIndex(0);
+		obj.removeDuplicates();
+		obj.display();
+	}
+}
