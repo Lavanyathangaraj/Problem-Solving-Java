@@ -1,0 +1,55 @@
+
+public class Main
+{
+	public static void main(String[] args) {
+		char a[][]={{'A','B','C','O'},{'B','A','T','N'},{'A','Y','E','A'},{'T','Y','A','E'}};
+		String str="BAT";
+		char b[][]=new char[a[0].length][a.length];
+		for(int i=0;i<a.length;i++){
+		    for(int j=0;j<a[0].length;j++){
+		        b[j][i]=a[i][j];
+		    }
+		}
+		print(a,str);
+		print1(b,str);
+	}
+	public static boolean presentOrNot(char arr[],int start,int stop,String str){
+	    //System.out.println(start+" "+stop);
+	    char a[]=new char[str.length()];
+	    int j=0;
+	    for(int i=start;i<=stop;i++){
+	        a[j]=arr[i];
+	        j++;
+	    }
+	    String s=new String(a);
+	    //System.out.println(s);
+	    if(str.equals(s)){
+	        return true;
+	    }
+	    return false;
+	}
+	public static void print(char a[][],String str){
+	    for(int i=0;i<a.length;i++){
+		    for(int j=0;j<=a[i].length-str.length();j++){
+		        if(presentOrNot(a[i],j,j+str.length()-1,str)==true){
+		            System.out.println("res------ "+i+""+j+" "+i+""+(j+str.length()-1));
+		        }
+		    }
+		}
+	}
+	public static void print1(char a[][],String str){
+	    for(int i=0;i<a.length;i++){
+		    for(int j=0;j<=a[i].length-str.length();j++){
+		        if(presentOrNot(a[i],j,j+str.length()-1,str)==true){
+		            System.out.println("res------ "+j+""+i+" "+(j+str.length()-1)+""+i);
+		        }
+		    }
+		}
+	}
+}
+
+
+
+Output:
+res-----10 12
+res-----10 30
