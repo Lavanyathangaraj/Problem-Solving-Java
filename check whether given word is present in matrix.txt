@@ -1,4 +1,6 @@
-
+/*
+ Given a 2D matrix of characters. Check whether the word exist in the matrix or not. If it exists then print its path. Allowed movements (left to right, up to down).
+*/
 public class Main
 {
 	public static void main(String[] args) {
